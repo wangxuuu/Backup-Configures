@@ -1,8 +1,20 @@
 #!/bin/bash
 
-cp ${HOME}/.{vimrc,basic.vimrc,plug.vimrc} ./
-cp ${HOME}/.gitignore_global ./
-cp ${HOME}/.{zshrc,zsh_functions} ./
+OS="$(uname -s)"
+case "${OS}" in
+    Darwin*)
+        cp ${HOME}/.{vimrc,basic.vimrc,plug.vimrc} ./
+        cp ${HOME}/.gitignore_global ./
+        cp ${HOME}/.{zshrc,zsh_functions} ./
 
-# Remove personal info in git-config file
-awk '!/name = |email = |signingkey = |essethon/' ${HOME}/.gitconfig > ./.gitconfig
+        # Remove personal info in git-config file
+        awk '!/name = |email = |signingkey = |essethon/' ${HOME}/.gitconfig > ./.gitconfig
+        ;;
+    Linux*)
+        cp ${HOME}/.zshrc ./.zshrc-linux-simple
+        ;;
+    *)
+        echo "Unknown OS: ${OS}"
+esac
+
+
