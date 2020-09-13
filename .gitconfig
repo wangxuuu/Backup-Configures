@@ -1,0 +1,28 @@
+[http]
+    # proxy = http://127.0.0.1:1087
+[https]
+    # proxy = http://127.0.0.1:1087
+[user]
+[commit]
+	gpgsign = true
+[http "https://github.com"]
+    # proxy = http://localhost:1087
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[core]
+	excludesfile = ~/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[pull]
+	ff = only
+[gpg]
+	program = /usr/local/MacGPG2/bin/gpg2

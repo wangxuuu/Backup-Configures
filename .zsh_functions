@@ -1,0 +1,13 @@
+# User defined functions
+# ----------------------
+function proxy() {
+  export ALL_PROXY=http://localhost:1087
+  export HTTP_PROXY=http://localhost:1087
+  export HTTPS_PROXY=http://localhost:1087
+}
+function noproxy() {
+  unset ALL_PROXY
+  unset HTTP_PROXY
+  unset HTTPS_PROXY
+}
+# proxy  # default: set proxy!
