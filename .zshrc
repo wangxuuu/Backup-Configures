@@ -46,7 +46,9 @@ zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower
 # autoload -U compinit && compinit
 unsetopt LIST_BEEP  # turn off auto completion beep
 
-
+# Spaceship-Prompt options
+# https://github.com/denysdovhan/spaceship-prompt/blob/master/docs/Options.md
+export SPACESHIP_DOCKER_SHOW=false
 
 # GPG Agent
 # ---------
@@ -94,4 +96,9 @@ function iterm2_print_user_vars() {
 # Include user functions
 if [ -f ~/.zsh_functions ]; then
     source ~/.zsh_functions
+fi
+
+# Credentials, e.g. Homebrew Github API Token
+if [ -f ~/.credentials ]; then
+    source ~/.credentials
 fi
