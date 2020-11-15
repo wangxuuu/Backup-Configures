@@ -25,7 +25,7 @@ zinit light-mode for \
 # Load oh-my-zsh git library and plugin
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
-zinit snippet OMZP::osx
+# zinit snippet OMZP::osx
 
 zinit light-mode for \
     zsh-users/zsh-autosuggestions \
