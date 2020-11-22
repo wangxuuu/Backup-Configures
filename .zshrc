@@ -30,8 +30,8 @@ zinit snippet OMZP::git
 zinit light-mode for \
     zsh-users/zsh-autosuggestions \
     zdharma/history-search-multi-word \
-    denysdovhan/spaceship-prompt \
-    laggardkernel/zsh-thefuck
+    denysdovhan/spaceship-prompt # \
+    # laggardkernel/zsh-thefuck
 
 zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
     zsh-users/zsh-completions
@@ -69,16 +69,26 @@ eval "$(pyenv virtualenv-init - --no-rehash)"
 # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
 # To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
 # to your ~/.zshrc:
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-# eval "$(rbenv init -)"
+eval "$(rbenv init - --no-rehash)"
+
+# Perl
+# ----
+# By default non-brewed cpan modules are installed to the Cellar. If you wish
+# for your modules to persist across updates we recommend using `local::lib`.
+
+# You can set that up like this:
+# PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
+eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
 
 # Just for fun
 # ------------
 alias please="sudo"
 
 alias ls="ls -G"
-alias ll="ls -alG"
+alias ll="ls -aGl"
+alias lh="ls -aGhl"
 alias la="ls -AG"
 
 # JDK environment
