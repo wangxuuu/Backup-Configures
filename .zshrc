@@ -54,8 +54,13 @@ export SPACESHIP_DOCKER_SHOW=false
 # ---------
 # export GPG_TTY="$(tty)"
 # export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# gpg-connect-agent updatestartuptty /bye > /dev/null
 # gpgconf --launch gpg-agent
 # export PATH="/usr/local/sbin:$PATH"
+
+# Secretive macOS
+# ---------------
+export SSH_AUTH_SOCK=${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 # export SSH_AUTH_SOCK=${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
