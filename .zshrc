@@ -25,12 +25,12 @@ zinit light-mode for \
 # Load oh-my-zsh git library and plugin
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
-# zinit snippet OMZP::osx
+zinit snippet OMZP::osx
 
 zinit light-mode for \
     zsh-users/zsh-autosuggestions \
+    denysdovhan/spaceship-prompt \
     zdharma/history-search-multi-word \
-    denysdovhan/spaceship-prompt # \
     # laggardkernel/zsh-thefuck
 
 zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
@@ -52,15 +52,15 @@ export SPACESHIP_DOCKER_SHOW=false
 
 # GPG Agent
 # ---------
-# export GPG_TTY="$(tty)"
-# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-# gpg-connect-agent updatestartuptty /bye > /dev/null
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpg-connect-agent updatestartuptty /bye > /dev/null
 # gpgconf --launch gpg-agent
 # export PATH="/usr/local/sbin:$PATH"
 
 # Secretive macOS
 # ---------------
-export SSH_AUTH_SOCK=${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+# export SSH_AUTH_SOCK=${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 
 # export SSH_AUTH_SOCK=${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
 

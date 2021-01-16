@@ -24,5 +24,3 @@
 	trustExitCode = true
 [pull]
 	ff = only
-[gpg]
-	program = /usr/local/bin/gpg
