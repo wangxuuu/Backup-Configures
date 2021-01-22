@@ -108,6 +108,10 @@ function iterm2_print_user_vars() {
 	iterm2_set_user_var proxy_status $([ -z "$ALL_PROXY" ] || echo "📡")
 }
 
+# Google Cloud SDK
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+
 # Include user functions
 if [ -f ~/.zsh_functions ]; then
     source ~/.zsh_functions
