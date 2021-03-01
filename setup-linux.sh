@@ -5,6 +5,33 @@ cp ./.basic.vimrc ~/.basic.vimrc
 cp ./.plug.vimrc ~/.plug.vimrc
 cp ./.gitconfig ~/.gitconfig
 
-echo 'Please set gitconfig by'
-echo '  git config --global user.name <your name>'
-echo '  git config --global user.email <your email>'
+# echo 'Please set gitconfig by'
+# echo '  git config --global user.name <your name>'
+# echo '  git config --global user.email <your email>'
+
+gitconfig() {
+    echo -n "
+===================================
+      * Git Configuration *
+-----------------------------------
+Please input Git Username: "
+
+    read username
+
+    echo -n "
+-----------------------------------
+Please input Git Email: "
+
+    read email
+
+    echo -n "
+-----------------------------------
+Done!
+===================================
+"
+
+    git config --global user.name "${username}"
+    git config --global user.email "${email}"
+}
+
+gitconfig
