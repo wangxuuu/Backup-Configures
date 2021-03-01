@@ -22,6 +22,9 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# Defer slow commands
+zplugin light romkatv/zsh-defer
+
 # Load oh-my-zsh git library and plugin
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
@@ -38,7 +41,6 @@ zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
 zinit wait lucid atinit"zicompinit; zicdreplay" blockf for \
     zdharma/fast-syntax-highlighting
 
-
 # zsh-completions settings
 # allow autocomplete from the middle of file/folder name
 zstyle ':completion:*' completer _complete
@@ -54,7 +56,7 @@ export SPACESHIP_DOCKER_SHOW=false
 # ---------
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpg-connect-agent updatestartuptty /bye > /dev/null
+zsh-defer -c 'gpg-connect-agent updatestartuptty /bye > /dev/null'
 # gpgconf --launch gpg-agent
 # export PATH="/usr/local/sbin:$PATH"
 
@@ -66,8 +68,8 @@ gpg-connect-agent updatestartuptty /bye > /dev/null
 
 # pyenv
 # -----
-eval "$(pyenv init - --no-rehash)"
-eval "$(pyenv virtualenv-init - --no-rehash)"
+zsh-defer -c 'eval "$(pyenv init - --no-rehash)"'
+zsh-defer -c 'eval "$(pyenv virtualenv-init - --no-rehash)"'
 
 # rbenv
 # -----
@@ -76,7 +78,7 @@ eval "$(pyenv virtualenv-init - --no-rehash)"
 # to your ~/.zshrc:
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 
-eval "$(rbenv init - --no-rehash)"
+zsh-defer -c 'eval "$(rbenv init - --no-rehash)"'
 
 # Perl
 # ----
@@ -85,7 +87,7 @@ eval "$(rbenv init - --no-rehash)"
 
 # You can set that up like this:
 # PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
-eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"
+zsh-defer -c 'eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib=$HOME/perl5)"'
 
 # Just for fun
 # ------------
@@ -102,7 +104,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/
 
 # iTerm2 shell integration
 # ------------------------
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+zsh-defer -c 'test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true'
 
 function iterm2_print_user_vars() {
 	iterm2_set_user_var proxy_status $([ -z "$ALL_PROXY" ] || echo "📡")
@@ -110,7 +112,7 @@ function iterm2_print_user_vars() {
 
 # Google Cloud SDK
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+zsh-defer -c 'source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"'
 
 # Include user functions
 if [ -f ~/.zsh_functions ]; then
