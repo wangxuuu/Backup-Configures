@@ -23,12 +23,12 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # Defer slow commands
-zplugin light romkatv/zsh-defer
+zinit light romkatv/zsh-defer
 
 # Load oh-my-zsh git library and plugin
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
-zinit snippet OMZP::osx
+zsh-defer zinit snippet OMZL::git.zsh
+zsh-defer zinit snippet OMZP::git
+zsh-defer zinit snippet OMZP::osx
 
 zinit light-mode for \
     zsh-users/zsh-autosuggestions \
@@ -36,15 +36,15 @@ zinit light-mode for \
     zdharma/history-search-multi-word \
     # laggardkernel/zsh-thefuck
 
-zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
+zsh-defer zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
     zsh-users/zsh-completions
-zinit wait lucid atinit"zicompinit; zicdreplay" blockf for \
+zsh-defer zinit wait lucid atinit"zicompinit; zicdreplay" blockf for \
     zdharma/fast-syntax-highlighting
 
 # zsh-completions settings
 # allow autocomplete from the middle of file/folder name
-zstyle ':completion:*' completer _complete
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+zsh-defer zstyle ':completion:*' completer _complete
+zsh-defer zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 # autoload -U compinit && compinit
 unsetopt LIST_BEEP  # turn off auto completion beep
 

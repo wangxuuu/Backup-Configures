@@ -22,9 +22,12 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# Defer slow commands
+zinit light romkatv/zsh-defer
+
 # Load oh-my-zsh git library and plugin
-zinit snippet OMZL::git.zsh
-zinit snippet OMZP::git
+zsh-defer zinit snippet OMZL::git.zsh
+zsh-defer zinit snippet OMZP::git
 
 zinit for \
     light-mode  zsh-users/zsh-autosuggestions \
@@ -39,13 +42,13 @@ zinit wait lucid atinit"zicompinit; zicdreplay" blockf for \
 
 # zsh-completions settings
 # allow autocomplete from the middle of file/folder name
-zstyle ':completion:*' completer _complete
-zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
+zsh-defer zstyle ':completion:*' completer _complete
+zsh-defer zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 # autoload -U compinit && compinit
 unsetopt LIST_BEEP  # turn off auto completion beep
 
 # GPG Agent forward
-gpgconf --create-socketdir
+zsh-defer gpgconf --create-socketdir
 
 # Just for fun
 # ------------
