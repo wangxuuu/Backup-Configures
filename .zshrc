@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -22,6 +29,8 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# Powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Defer slow commands
 zinit light romkatv/zsh-defer
 
@@ -30,9 +39,10 @@ zsh-defer zinit snippet OMZL::git.zsh
 zsh-defer zinit snippet OMZP::git
 zsh-defer zinit snippet OMZP::osx
 
-zinit light-mode for \
+# zinit light denysdovhan/spaceship-prompt
+
+zsh-defer zinit light-mode for \
     zsh-users/zsh-autosuggestions \
-    denysdovhan/spaceship-prompt \
     zdharma/history-search-multi-word \
     # laggardkernel/zsh-thefuck
 
@@ -56,7 +66,7 @@ export SPACESHIP_DOCKER_SHOW=false
 # ---------
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-zsh-defer -c 'gpg-connect-agent updatestartuptty /bye > /dev/null'
+zsh-defer gpg-connect-agent updatestartuptty /bye > /dev/null
 # gpgconf --launch gpg-agent
 # export PATH="/usr/local/sbin:$PATH"
 
@@ -96,7 +106,7 @@ alias please="sudo"
 alias ls="ls -G"
 alias ll="ls -aGl"
 alias lh="ls -aGhl"
-alias la="ls -AG"
+
 
 # JDK environment
 # ---------------
@@ -104,7 +114,7 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/
 
 # iTerm2 shell integration
 # ------------------------
-zsh-defer -c 'test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true'
+zsh-defer test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 
 function iterm2_print_user_vars() {
 	iterm2_set_user_var proxy_status $([ -z "$ALL_PROXY" ] || echo "📡")
@@ -112,7 +122,7 @@ function iterm2_print_user_vars() {
 
 # Google Cloud SDK
 source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-zsh-defer -c 'source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"'
+zsh-defer source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # Include user functions
 if [ -f ~/.zsh_functions ]; then
@@ -123,3 +133,6 @@ fi
 if [ -f ~/.credentials ]; then
     source ~/.credentials
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
