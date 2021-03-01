@@ -1,11 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -60,7 +52,7 @@ unsetopt LIST_BEEP  # turn off auto completion beep
 
 # Spaceship-Prompt options
 # https://github.com/denysdovhan/spaceship-prompt/blob/master/docs/Options.md
-export SPACESHIP_DOCKER_SHOW=false
+# export SPACESHIP_DOCKER_SHOW=false
 
 # GPG Agent
 # ---------
@@ -86,7 +78,9 @@ zsh-defer -c 'eval "$(pyenv virtualenv-init - --no-rehash)"'
 # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
 # To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
 # to your ~/.zshrc:
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+# `brew --prefix` is slow when initializing zsh. We use literal path here.
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
 
 zsh-defer -c 'eval "$(rbenv init - --no-rehash)"'
 
