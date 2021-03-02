@@ -64,7 +64,7 @@ unsetopt LIST_BEEP  # turn off auto completion beep
 # GPG Agent
 # ---------
 export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+zsh-defer export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 zsh-defer gpg-connect-agent updatestartuptty /bye > /dev/null
 # gpgconf --launch gpg-agent
 # export PATH="/usr/local/sbin:$PATH"
