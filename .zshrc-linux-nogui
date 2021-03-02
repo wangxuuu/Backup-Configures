@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -21,6 +28,8 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# Powerlevel10k
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 # Defer slow commands
 zinit light romkatv/zsh-defer
 
@@ -28,15 +37,14 @@ zinit light romkatv/zsh-defer
 zsh-defer zinit snippet OMZL::git.zsh
 zsh-defer zinit snippet OMZP::git
 
-zinit light denysdovhan/spaceship-prompt
-
-zsh-defer zinit for \
+zinit for \
     light-mode  zsh-users/zsh-autosuggestions \
-    light-mode  zdharma/history-search-multi-word
+    light-mode  zdharma/history-search-multi-word \
+    light-mode  denysdovhan/spaceship-prompt
 
-zsh-defer zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
+zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
     zsh-users/zsh-completions
-zsh-defer zinit wait lucid atinit"zicompinit; zicdreplay" blockf for \
+zinit wait lucid atinit"zicompinit; zicdreplay" blockf for \
     zdharma/fast-syntax-highlighting
 
 
@@ -58,3 +66,7 @@ alias l='ls -CF'
 alias la='ls -A'
 alias ll='ls -alF'
 alias ls='ls --color=auto'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+(( ! ${+functions[p10k]} )) || p10k finalize
