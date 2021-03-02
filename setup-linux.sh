@@ -4,6 +4,7 @@ cp ./.vimrc ~/.vimrc
 cp ./.basic.vimrc ~/.basic.vimrc
 cp ./.plug.vimrc ~/.plug.vimrc
 cp ./.gitconfig ~/.gitconfig
+cp ./.tmux.conf ~/.tmux.conf
 
 # echo 'Please set gitconfig by'
 # echo '  git config --global user.name <your name>'
