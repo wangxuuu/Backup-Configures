@@ -10,7 +10,7 @@ export GOROOT=$HOME/.go/go1.16
 export GOPATH=$HOME/go
 export GOBIN=$GOPATH/bin
 
-(( $PATH[(I)$GOROOT] )) || export PATH="$GOROOT:$PATH"
+(( $PATH[(I)$GOROOT] )) || export PATH="$GOROOT/bin:$PATH"
 (( $PATH[(I)$GOBIN] )) || export PATH="$GOBIN:$PATH"
 
 # Rust
