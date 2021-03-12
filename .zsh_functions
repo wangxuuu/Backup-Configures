@@ -11,3 +11,14 @@ function noproxy() {
   unset HTTPS_PROXY
 }
 # proxy  # default: set proxy!
+
+if (( ${+IPINFO_API_TOKEN} )); then
+  function ipinfo() {
+    curl "ipinfo.io/${1}?token=${IPINFO_API_TOKEN}"
+  }
+  function domainip() {
+    IP=$(dig +short ${1})
+    echo ${1} 'resolved to' ${IP}
+    curl "ipinfo.io/${IP}?token=${IPINFO_API_TOKEN}"
+  }
+fi
