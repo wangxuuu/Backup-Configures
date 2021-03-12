@@ -78,11 +78,11 @@ git_username=$(git config --global user.name)
 git_email=$(git config --global user.email)
 cp ./.gitconfig ~/.gitconfig
 
-if (( ${+git_username} )); then
+if [ -z "$git_username" ]; then
+    gitconfig
+else
     git config --global user.name ${git_username}
     git config --global user.email ${git_email}
-else
-    gitconfig
 fi
 
 echo -n "
