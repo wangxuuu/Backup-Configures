@@ -119,14 +119,11 @@ source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.in
 zsh-defer source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
 # Credentials, e.g. Homebrew Github API Token
-if [ -f ~/.credentials ]; then
-    source ~/.credentials
-fi
+[[ ! -f ~/.credentials ]] || source ~/.credentials
 
 # Include user functions
-if [ -f ~/.zsh_functions ]; then
-    source ~/.zsh_functions
-fi
+[[ ! -f ~/.zsh_functions ]] || source ~/.zsh_functions
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+

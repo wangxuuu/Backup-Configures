@@ -51,3 +51,9 @@ unsetopt LIST_BEEP  # turn off auto completion beep
 zsh-defer gpgconf --create-socketdir
 
 [[ ! -f ~/.alias.zsh ]] || source ~/.alias.zsh
+
+# Credentials, e.g. Homebrew Github API Token
+[[ ! -f ~/.credentials ]] || source ~/.credentials
+
+# Include user functions
+[[ ! -f ~/.zsh_functions ]] || source ~/.zsh_functions
