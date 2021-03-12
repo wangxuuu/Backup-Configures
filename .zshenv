@@ -14,4 +14,4 @@ export GOBIN=$GOPATH/bin
 (( $PATH[(I)$GOBIN] )) || export PATH="$GOBIN:$PATH"
 
 # Rust
-source "$HOME/.cargo/env"
+[[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env
