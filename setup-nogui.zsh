@@ -1,9 +1,10 @@
+#!/usr/bin/env zsh
+
 cp ./.functions.zsh ~/.functions.zsh
 cp ./.zshenv ~/.zshenv
 cp ./.vimrc ~/.vimrc
 cp ./.basic.vimrc ~/.basic.vimrc
 cp ./.plug.vimrc ~/.plug.vimrc
-cp ./.gitconfig ~/.gitconfig
 cp ./.tmux.conf ~/.tmux.conf
 
 # echo 'Please set gitconfig by'
@@ -72,4 +73,31 @@ Done!
     git config --global user.email "${email}"
 }
 
-gitconfig
+# Read git config
+git_username=$(git config --global user.name)
+git_email=$(git config --global user.email)
+cp ./.gitconfig ~/.gitconfig
+
+if (( ${+git_username} )); then
+    git config --global user.name ${git_username}
+    git config --global user.email ${git_email}
+else
+    gitconfig
+fi
+
+echo -n "
+
+Auto-sign commits when using git? [Y/n]:
+"
+
+read sign
+case $sign in
+n|N)
+    git config --global commit.gpgsign false
+    git config --global gpg.program $(which gpg)
+    ;;
+*)
+    git config --global commit.gpgsign true
+    git config --global gpg.program $(which gpg)
+    ;;
+esac
