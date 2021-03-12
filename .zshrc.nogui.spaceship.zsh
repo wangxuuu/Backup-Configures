@@ -56,4 +56,4 @@ zsh-defer gpgconf --create-socketdir
 [[ ! -f ~/.credentials ]] || source ~/.credentials
 
 # Include user functions
-[[ ! -f ~/.zsh_functions ]] || source ~/.zsh_functions
+[[ ! -f ~/.functions.zsh ]] || source ~/.functions.zsh

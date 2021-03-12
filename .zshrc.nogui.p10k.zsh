@@ -64,7 +64,7 @@ zsh-defer gpgconf --create-socketdir
 [[ ! -f ~/.credentials ]] || source ~/.credentials
 
 # Include user functions
-[[ ! -f ~/.zsh_functions ]] || source ~/.zsh_functions
+[[ ! -f ~/.functions.zsh ]] || source ~/.functions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

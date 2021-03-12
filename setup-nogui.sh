@@ -1,4 +1,4 @@
-cp ./.zsh_functions ~/.zsh_functions
+cp ./.functions.zsh ~/.functions.zsh
 cp ./.vimrc ~/.vimrc
 cp ./.basic.vimrc ~/.basic.vimrc
 cp ./.plug.vimrc ~/.plug.vimrc
