@@ -40,7 +40,7 @@ Plug 'dense-analysis/ale'
     let g:ale_lint_on_enter = 0
 
 " Beancount
-Plug 'nathangrigg/vim-beancount'
+" Plug 'nathangrigg/vim-beancount'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
