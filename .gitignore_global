@@ -17,7 +17,7 @@ Thumbs.db
 */.idea/
 
 # CMake Binary Directory
-cmake-build-debug/
+cmake-build-*/
 
 # VSCode Workspace settings
 .vscode/

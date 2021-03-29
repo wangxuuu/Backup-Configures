@@ -19,7 +19,7 @@ if (( ${+IPINFO_API_TOKEN} )); then
   function domainip() {
     DNSTOOL=dig
     (( ! ${+commands[drill]} )) || DNSTOOL=drill
-    IP=$(dig +short ${1})
+    IP=$($DNSTOOL +short ${1})
     echo ${1} 'resolved to' ${IP}
     curl "ipinfo.io/${IP}?token=${IPINFO_API_TOKEN}"
   }
