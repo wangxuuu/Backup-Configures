@@ -18,9 +18,10 @@ if (( ${+IPINFO_API_TOKEN} )); then
   }
   function domainip() {
     DNSTOOL=dig
-    (( ! ${+commands[drill]} )) || DNSTOOL=drill
+    # (( ! ${+commands[drill]} )) || DNSTOOL=drill
     IP=$($DNSTOOL +short ${1})
     echo ${1} 'resolved to' ${IP}
+    IP=$(echo -n $IP | grep -m1 '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}')
     curl "ipinfo.io/${IP}?token=${IPINFO_API_TOKEN}"
   }
 fi
