@@ -25,3 +25,7 @@ if (( ${+IPINFO_API_TOKEN} )); then
     curl "ipinfo.io/${IP}?token=${IPINFO_API_TOKEN}"
   }
 fi
+
+function ipp() {
+  curl "ip.trickysky.com/${1}"
+}
