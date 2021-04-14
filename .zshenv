@@ -7,7 +7,7 @@ export LC_ALL=en_US.UTF-8
 
 # Go
 export GOROOT=$HOME/.go/go1.16
-export GOPATH=$HOME/go
+export GOPATH=$HOME/Developer/local/go
 export GOBIN=$GOPATH/bin
 
 (( $PATH[(I)$GOROOT] )) || export PATH="$GOROOT/bin:$PATH"
