@@ -94,7 +94,6 @@ read sign
 case $sign in
 n|N)
     git config --global commit.gpgsign false
-    git config --global gpg.program $(which gpg)
     ;;
 *)
     git config --global commit.gpgsign true
