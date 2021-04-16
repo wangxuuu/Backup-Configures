@@ -6,12 +6,15 @@ export LC_ALL=en_US.UTF-8
 (( $PATH[(I)$HOME/.local/bin] )) || export PATH="$HOME/.local/bin:$PATH"
 
 # Go
-export GOROOT=$HOME/.go/go1.16
-export GOPATH=$HOME/Developer/local/go
-export GOBIN=$GOPATH/bin
+if [ -d "$HOME/.go" ]
+then
+    export GOROOT=$HOME/.go/go1.16
+    export GOPATH=$HOME/Developer/local/go
+    export GOBIN=$GOPATH/bin
 
-(( $PATH[(I)$GOROOT] )) || export PATH="$GOROOT/bin:$PATH"
-(( $PATH[(I)$GOBIN] )) || export PATH="$GOBIN:$PATH"
+    (( $PATH[(I)$GOROOT] )) || export PATH="$GOROOT/bin:$PATH"
+    (( $PATH[(I)$GOBIN] )) || export PATH="$GOBIN:$PATH"
+fi
 
 # Rust
 [[ ! -f $HOME/.cargo/env ]] || source $HOME/.cargo/env

@@ -9,3 +9,5 @@ alias ll="ls -aGl"
 alias lh="ls -aGhl"
 
 alias mv='mv -i'
+
+alias up='cd ..'
