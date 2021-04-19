@@ -5,125 +5,124 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="/Users/wangxu/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
+# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/wangxu/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/wangxu/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/wangxu/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/wangxu/opt/anaconda3/bin:$PATH"
+    fi
 fi
+unset __conda_setup
+# <<< conda initialize <<<
 
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
-
-### End of Zinit's installer chunk
-
-# Powerlevel10k
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-# Defer slow commands
-zinit light romkatv/zsh-defer
-
-# Load oh-my-zsh git library and plugin
-zsh-defer zinit snippet OMZL::git.zsh
-zsh-defer zinit snippet OMZP::git
-zsh-defer zinit snippet OMZP::osx
-
-# zinit light denysdovhan/spaceship-prompt
-
-zsh-defer zinit light-mode for \
-    zsh-users/zsh-autosuggestions \
-    zdharma/history-search-multi-word \
-    # laggardkernel/zsh-thefuck
-
-zsh-defer zinit wait lucid atload"zicompinit; zicdreplay" blockf for \
-    zsh-users/zsh-completions
-zsh-defer zinit wait lucid atinit"zicompinit; zicdreplay" blockf for \
-    zdharma/fast-syntax-highlighting
-
-# zsh-completions settings
-# allow autocomplete from the middle of file/folder name
-zsh-defer zstyle ':completion:*' completer _complete
-zsh-defer zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
-# autoload -U compinit && compinit
-unsetopt LIST_BEEP  # turn off auto completion beep
-
-# Spaceship-Prompt options
-# https://github.com/denysdovhan/spaceship-prompt/blob/master/docs/Options.md
-# export SPACESHIP_DOCKER_SHOW=false
-
-# GPG Agent
-# ---------
-export GPG_TTY="$(tty)"
-zsh-defer export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-zsh-defer gpg-connect-agent updatestartuptty /bye > /dev/null
-# gpgconf --launch gpg-agent
-# export PATH="/usr/local/sbin:$PATH"
-
-# Secretive macOS
-# ---------------
-# export SSH_AUTH_SOCK=${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-
-# export SSH_AUTH_SOCK=${HOME}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
-
-# pyenv
-# -----
-zsh-defer -c 'eval "$(pyenv init - --no-rehash)"'
-zsh-defer -c 'eval "$(pyenv virtualenv-init - --no-rehash)"'
-
-# rbenv
-# -----
-# ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these are never upgraded.
-# To link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded) add the following
-# to your ~/.zshrc:
-# export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
-# `brew --prefix` is slow when initializing zsh. We use literal path here.
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1"
-
-zsh-defer -c 'eval "$(rbenv init - --no-rehash)"'
-
-# Perl
-# ----
-# By default non-brewed cpan modules are installed to the Cellar. If you wish
-# for your modules to persist across updates we recommend using `local::lib`.
-
-# You can set that up like this:
-# PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
-zsh-defer -c 'eval "$(perl -I$HOME/.local/perl5/lib/perl5 -Mlocal::lib=$HOME/.local/perl5)"'
-
-[[ ! -f ~/.alias.zsh ]] || source ~/.alias.zsh
-
-# JDK environment
-# ---------------
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/adoptopenjdk-14.jdk/Contents/Home
-
-# iTerm2 shell integration
-# ------------------------
-zsh-defer test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
-
-function iterm2_print_user_vars() {
-	iterm2_set_user_var proxy_status $([ -z "$ALL_PROXY" ] || echo "📡")
-}
-
-# Google Cloud SDK
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-zsh-defer source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-
-# Credentials, e.g. Homebrew Github API Token
-[[ ! -f ~/.credentials ]] || source ~/.credentials
-
-# Include user functions
-[[ ! -f ~/.functions.zsh ]] || source ~/.functions.zsh
+export PATH="/Users/wangxu/opt/anaconda3/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
